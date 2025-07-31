@@ -12,7 +12,7 @@ if uploaded_file:
         df = pd.read_csv(io.StringIO(content))
 
         # ヘッダー表示（任意）
-        st.write("読み込んだ列名:", df.columns.tolist())
+        # st.write("読み込んだ列名:", df.columns.tolist())
 
         # 必須列のチェック
         required_cols = ["機器", "ステップ", "計算分類", "2024", "2025", "計算値"]
