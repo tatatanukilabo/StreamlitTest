@@ -11,10 +11,15 @@ if uploaded_file:
     # 入力用に2025列を空で準備
     df["2025"] = None
 
-    # 行ごとに入力フォームを表示
+    # 行ごとに整数入力フォームを表示（step=1指定）
     for i in range(len(df)):
-        input_val = st.number_input(f'{df["機器"][i]} の 2025 年の値を入力', key=f"input_{i}")
-        df.at[i, "2025"] = input_val
+        input_val = st.number_input(
+            f'{df["機器"][i]} の 2025 年の値を入力',
+            key=f"input_{i}",
+            step=1,
+            format="%d"
+        )
+        df.at[i, "2025"] = int(input_val)
 
     # 差分を計算するボタン
     if st.button("差分を計算"):
