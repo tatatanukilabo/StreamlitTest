@@ -25,10 +25,11 @@ if uploaded_file:
             for i in range(len(df)):
                 st.subheader(f'{df["機器"][i]} の入力')
 
-                # ステップを小数点以下の列から取得
-                step_val = float(df["小数点以下"][i]) if pd.notna(df["小数点以下"][i]) else 0.1
+                # ステップ取得（0なら1.0に補正）
+                step_raw = float(df["小数点以下"][i]) if pd.notna(df["小数点以下"][i]) else 0.1
+                step_val = 1.0 if step_raw == 0 else step_raw
 
-                # 入力初期値：2025があればそれ、なければ2024の値
+                # 入力初期値の設定
                 default_val = float(df["2025"][i]) if pd.notna(df["2025"][i]) else float(df["2024"][i])
                 input_val = st.number_input(
                     f'{df["機器"][i]} の 2025 年の値',
