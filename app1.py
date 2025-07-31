@@ -11,11 +11,12 @@ if uploaded_file:
     # 入力用に2025列を空で準備
     df["2025"] = None
 
-    # 行ごとに整数入力フォームを表示（step=1指定）
+    # 行ごとに整数入力フォームを表示（初期値 = 2024の値）
     for i in range(len(df)):
         input_val = st.number_input(
             f'{df["機器"][i]} の 2025 年の値を入力',
             key=f"input_{i}",
+            value=int(df["2024"][i]),
             step=1,
             format="%d"
         )
