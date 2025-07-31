@@ -6,7 +6,9 @@ uploaded_file = st.file_uploader("CSVファイルをアップロード", type="c
 
 if uploaded_file:
     df = pd.read_csv(uploaded_file)
-
+    if uploaded_file:
+        df = pd.read_csv(uploaded_file)
+        st.write("読み込んだ列名:", df.columns.tolist())
     # 必須列が揃っているか確認
     required_cols = ["機器", "小数点以下", "計算分類", "2024", "2025", "差分"]
     if not all(col in df.columns for col in required_cols):
